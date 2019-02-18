@@ -10,6 +10,12 @@ import java.awt.BasicStroke;
 import javax.swing.JComponent;
 import javax.swing.JOptionPane;
 
+import java.io.*;
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
+import javax.swing.SwingUtilities;
+
 import cs260.game_model.TicTacToeGame;
 import cs260.game_model.TicTacToeListener;
 import cs260.game_model.IllegalMoveException;
@@ -21,31 +27,30 @@ public class FancyDisplay
 		extends JComponent
 		implements TicTacToeListener
 {
-    private TicTacToeGame game;
+  private TicTacToeGame game;
 	private TicTacToeControl mouseController;
 
     private static int WIDTH = 200;
     private static int GAP = 20;
     private static int LINE_WIDTH = 5;
 
-    public FancyDisplay(TicTacToeGame game)
-    {
+    public FancyDisplay(TicTacToeGame game){
         this.game = game;
 
-		mouseController = new TicTacToeControl(game, this);
+				mouseController = new TicTacToeControl(game, this);
 
         setSize(new Dimension(WIDTH*3, WIDTH*3));
         setPreferredSize(new Dimension(WIDTH*3, WIDTH*3));
     }
 
-    public void paintComponent(Graphics g)
-    {
+    public void paintComponent(Graphics g){
         super.paintComponent(g);
 
-        setLineWidth(g);
+        //setLineWidth(g);
 
-        drawLines(g);
+        menubuttons();
 
+				/**
         try {
             char piece;
 
@@ -62,60 +67,81 @@ public class FancyDisplay
         } catch (IllegalMoveException e) {
             throw new RuntimeException(e);
         }
+				**/
+
     }
 
-    public void showWinner(char winner)
-    {
+		private void menubuttons(){
+
+			 JPanel g = new JPanel();
+			 FlowLayout experimentLayout = new FlowLayout();
+       g.setLayout(experimentLayout);
+
+
+		   g.add(new JButton("Button 1"));
+		   g.add(new JButton("Button 2"));
+		   g.add(new JButton("Button 3"));
+		   g.add(new JButton("Long-Named Button 4"));
+		   g.add(new JButton("5"));
+
+			 g.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
+				//draws the lines of tic tac toe
+				//g.drawLine(0, WIDTH, WIDTH*3, WIDTH);
+				//g.drawLine(WIDTH, 0, WIDTH, WIDTH*3);
+				//g.drawLine(0, WIDTH*2, WIDTH*3, WIDTH*2);
+				//g.drawLine(WIDTH*2, 0, WIDTH*2, WIDTH*3);
+
+		}
+
+		/**
+
+    public void showWinner(char winner){
         JOptionPane.showMessageDialog(this,
                                       winner + " WINS!!!");
     }
 
-    public void showTieGame()
-    {
+    public void showTieGame(){
         JOptionPane.showMessageDialog(this,
                                       "NOBODY WINS!!!");
     }
+		**/
 
-    public int getRow(int xPixel)
-    {
+    public int getRow(int xPixel){
         return xPixel/WIDTH;
     }
 
-    public int getColumn(int yPixel)
-    {
+    public int getColumn(int yPixel){
         return yPixel/WIDTH;
     }
 
-    private void setLineWidth(Graphics g)
-    {
+    private void setLineWidth(Graphics g){
         ((Graphics2D) g).setStroke(new BasicStroke(LINE_WIDTH));
     }
 
-    private void drawLines(Graphics g)
-    {//draws the lines of tic tac toe
-        g.drawLine(0, WIDTH, WIDTH*3, WIDTH);
-        g.drawLine(WIDTH, 0, WIDTH, WIDTH*3);
-        g.drawLine(0, WIDTH*2, WIDTH*3, WIDTH*2);
-        g.drawLine(WIDTH*2, 0, WIDTH*2, WIDTH*3);
-    }
 
-    private void drawX(Graphics g, int i, int j)
-    {
+
+		/**
+		private void drawLine(Graphics g){
+
+		}
+
+
+    private void drawX(Graphics g, int i, int j){
         g.drawLine(i*WIDTH+GAP, j*WIDTH+GAP,
                    i*WIDTH+WIDTH-GAP, j*WIDTH+WIDTH-GAP);
         g.drawLine(i*WIDTH+WIDTH-GAP, j*WIDTH+GAP,
                    i*WIDTH+GAP, j*WIDTH+WIDTH-GAP);
     }
 
-    private void drawO(Graphics g, int i, int j)
-    {
+
+    private void drawO(Graphics g, int i, int j){
         g.drawOval(i*WIDTH + GAP, j*WIDTH + GAP, WIDTH-2*GAP, WIDTH-2*GAP);
     }
+		**/
 
-	public void update()
-	{
+	public void update(){
 		repaint();
 		System.out.print("\n Update is called: FancyDisplay\n");
-
 	}
+
 }

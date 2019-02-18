@@ -7,7 +7,7 @@ import cs260.game_model.TicTacToeGame;
 
 import cs260.gui.FancyDisplay;
 
-import cs260.turn_gui.TurnIndicator;
+//import cs260.turn_gui.TurnIndicator;
 import cs260.openfile.FileOpener;
 
 
@@ -48,14 +48,14 @@ public class TicTacToeApp
         mainFrame.pack();
         mainFrame.setVisible(true);
 
-        JFrame turnFrame = new JFrame("Tic Tac Toe");
-        TurnIndicator indicator = new TurnIndicator(game);
+        //JFrame turnFrame = new JFrame("Tic Tac Toe");
+        //TurnIndicator indicator = new TurnIndicator(game);
 
-        game.addListener(indicator);
-        turnFrame.getContentPane().add(indicator);
+        //game.addListener(indicator);
+        //turnFrame.getContentPane().add(indicator);
 
-        turnFrame.pack();
-        turnFrame.setVisible(true);
+        //turnFrame.pack();
+        //turnFrame.setVisible(true);
 
         System.out.print("\nListener is added: TicTacToeApp\n");
 

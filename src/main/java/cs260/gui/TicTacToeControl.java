@@ -8,22 +8,20 @@ import javax.swing.JOptionPane;
 import cs260.game_model.TicTacToeGame;
 import cs260.game_model.IllegalMoveException;
 
-public class TicTacToeControl
-        implements MouseListener
-{
+public class TicTacToeControl implements MouseListener{
+
     private TicTacToeGame game;
     private FancyDisplay gameDisplay;
 
-    public TicTacToeControl(TicTacToeGame game, FancyDisplay gameDisplay)
-    {
+    public TicTacToeControl(TicTacToeGame game, FancyDisplay gameDisplay){
         this.game = game;
         this.gameDisplay = gameDisplay;
 
         gameDisplay.addMouseListener(this);
     }
 
-    public void mouseClicked(MouseEvent e)
-    {
+    public void mouseClicked(MouseEvent e){
+        /**
         int x = e.getX();
         int y = e.getY();
 
@@ -35,23 +33,23 @@ public class TicTacToeControl
         } catch (IllegalMoveException ex) {
             // warn user
         }
+        **/
         System.out.print("\nmouseClicked event is called: TicTacToeControl\n");
     }
-    public void mouseEntered(MouseEvent e)
-    {
 
-    }
-    public void mouseExited(MouseEvent e)
-    {
-
-    }
-    public void mousePressed(MouseEvent e)
-    {
+    public void mouseEntered(MouseEvent e){
 
     }
 
-    public void mouseReleased(MouseEvent e)
-    {
+    public void mouseExited(MouseEvent e){
+
+    }
+
+    public void mousePressed(MouseEvent e){
+
+    }
+
+    public void mouseReleased(MouseEvent e){
 
     }
 }

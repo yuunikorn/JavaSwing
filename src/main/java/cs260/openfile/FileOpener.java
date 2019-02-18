@@ -11,11 +11,11 @@ import javax.swing.JComponent;
 import javax.swing.JOptionPane;
 
 import java.io.*;
-import javax.swing.*;
-import java.awt.event.*;
 import java.awt.*;
-import javax.swing.filechooser.*;
+import java.awt.event.*;
+import javax.swing.*;
 import javax.swing.SwingUtilities;
+import javax.swing.filechooser.*;
 
 import cs260.game_model.TicTacToeGame;
 import cs260.game_model.TicTacToeListener;
@@ -83,7 +83,7 @@ public class FileOpener
 
 			    @Override
 			    public void actionPerformed(ActionEvent e) {
-						j.setApproveButtonText("New Approve Text");
+						j.setApproveButtonText("Open");
 						// Set the mnemonic
 						j.setApproveButtonMnemonic('a');
 						// Set the tool tip
@@ -95,10 +95,12 @@ public class FileOpener
 						if (r == JFileChooser.APPROVE_OPTION) {
                 // set the label to the path of the selected directory
               //  pathname = setText(j.getSelectedFile().getAbsolutePath());
-								System.out.print("\npathname");
+								File file = j.getSelectedFile();
+								String fullPath = file.getAbsolutePath();
+								System.out.println(fullPath);
+
+								//System.out.print("\npathname");
 							}
-							//else
-	            //    setText("the user cancelled the operation");
 
 						frame.setVisible(false);
 			    	}
@@ -108,7 +110,7 @@ public class FileOpener
 
 			    @Override
 			    public void actionPerformed(ActionEvent e) {
-						j.setApproveButtonText("New Approve Text");
+						j.setApproveButtonText("Save");
 						// Set the mnemonic
 						j.setApproveButtonMnemonic('a');
 						// Set the tool tip
@@ -120,10 +122,27 @@ public class FileOpener
 						if (r == JFileChooser.APPROVE_OPTION) {
                 // set the label to the path of the selected directory
               //  pathname = setText(j.getSelectedFile().getAbsolutePath());
-								System.out.print("\nSAVEDPATH");
+								File file = j.getSelectedFile();
+								String fullPath = file.getAbsolutePath();
+								System.out.println(fullPath);
+
+								/** //////////allows us to check if user has already made file of same name////////////////
+								File xmlFile = new File(chooser.getSelectedFile().toString()+ ".xml");
+										if (xmlFile.exists()) {
+										    int response = JOptionPane.showConfirmDialog(null, //
+										            "Do you want to replace the existing file?", //
+										            "Confirm", JOptionPane.YES_NO_OPTION, //
+										            JOptionPane.QUESTION_MESSAGE);
+										    if (response != JOptionPane.YES_OPTION) {
+										        return;
+										    }
+										}
+								//////////////////// **/
+
+								//Addition to this, we need to actually create the file
+
+
 							}
-							//else
-	            //    setText("the user cancelled the operation");
 
 						frame.setVisible(false);
 			    	}
