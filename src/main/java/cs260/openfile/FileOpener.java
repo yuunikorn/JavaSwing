@@ -29,6 +29,11 @@ public class FileOpener
 {
     private TicTacToeGame game;
 
+		//jpanel object
+		JPanel cards;
+		final static String BUTTONPANEL = "Card with JButtons";
+    final static String TEXTPANEL = "Card with JTextField";
+
 
 		//public JFileChooser j = new JFileChooser();
 
@@ -39,15 +44,42 @@ public class FileOpener
 
     public FileOpener(TicTacToeGame game)
     {
-			JFrame frame = new JFrame();
-	 		JButton b1 = new JButton();
-	 		frame.setSize(500,500);
-	 		b1.setSize(100,100);
-	 		b1.setVisible(true);
-	 		b1.setText("Save");
-	 		frame.add(b1);
+			//JPanel comboBoxPane = new JPanel(); //use FlowLayout
+			String comboBoxItems[] = { BUTTONPANEL, TEXTPANEL };
+			//JComboBox cb = new JComboBox(comboBoxItems);
+			//cb.setEditable(false);
+			//cb.addItemListener(null);
+			//comboBoxPane.add(cb);
 
-			b1.addActionListener(new ActionListener() {
+			//Create the "cards".
+			JPanel card1 = new JPanel();
+			JPanel card2 = new JPanel();
+
+			JButton b1 = new JButton("Open");
+			JButton b2 = new JButton("Save");
+			JButton b3 = new JButton("Cancel");
+
+			card1.add(b1);
+			card1.add(b2);
+			card1.add(b3);
+
+			card2.add(new JLabel("Please select and option", JLabel.CENTER));
+
+			cards = new JPanel(new CardLayout());
+			cards.add(card1, BUTTONPANEL);
+			cards.add(card2, TEXTPANEL);
+
+
+			JFrame frame = new JFrame("Please select an option");
+			frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+			//frame.add(comboBoxPane, BorderLayout.PAGE_START);
+			frame.add(cards, BorderLayout.CENTER);
+
+			frame.pack();
+			frame.setVisible(true);
+
+
+			b1.addActionListener(new ActionListener() { //Open is always avalilble
 
 			    @Override
 			    public void actionPerformed(ActionEvent e) {
@@ -56,11 +88,57 @@ public class FileOpener
 						j.setApproveButtonMnemonic('a');
 						// Set the tool tip
 						j.setApproveButtonToolTipText("New Approve Tool Tip");
-						j.showOpenDialog(null);			//for open box
-			    }
-					});
 
-	 		frame.setVisible(true);
+						int r = j.showOpenDialog(null);			//for open box
+
+						//drop and pass the name through
+						if (r == JFileChooser.APPROVE_OPTION) {
+                // set the label to the path of the selected directory
+              //  pathname = setText(j.getSelectedFile().getAbsolutePath());
+								System.out.print("\npathname");
+							}
+							//else
+	            //    setText("the user cancelled the operation");
+
+						frame.setVisible(false);
+			    	}
+						});
+
+			b2.addActionListener(new ActionListener() { //save can save despite being empty
+
+			    @Override
+			    public void actionPerformed(ActionEvent e) {
+						j.setApproveButtonText("New Approve Text");
+						// Set the mnemonic
+						j.setApproveButtonMnemonic('a');
+						// Set the tool tip
+						j.setApproveButtonToolTipText("New Approve Tool Tip");
+
+						int r = j.showSaveDialog(null);
+
+						//drop and pass the name through
+						if (r == JFileChooser.APPROVE_OPTION) {
+                // set the label to the path of the selected directory
+              //  pathname = setText(j.getSelectedFile().getAbsolutePath());
+								System.out.print("\nSAVEDPATH");
+							}
+							//else
+	            //    setText("the user cancelled the operation");
+
+						frame.setVisible(false);
+			    	}
+						});
+
+
+			b3.addActionListener(new ActionListener() {	//when cancelled on start, program proceeds to load empty canvas
+
+			    @Override
+			    public void actionPerformed(ActionEvent e) {
+
+						frame.setVisible(false);
+			    	}
+						});
+
 
 			/**
 			j.setApproveButtonText("New Approve Text");
