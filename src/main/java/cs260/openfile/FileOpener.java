@@ -40,18 +40,15 @@ public class FileOpener
 		// = new JFileChooser("d:", FileSystemView.getFileSystemView());
 		public JFileChooser j = new JFileChooser();
 
+		public FileOpener(TicTacToeGame game){
+			OpenFileConstructor();
+		}
 
 
-    public FileOpener(TicTacToeGame game)
-    {
-			//JPanel comboBoxPane = new JPanel(); //use FlowLayout
+    private JFrame OpenFileConstructor(){
+
 			String comboBoxItems[] = { BUTTONPANEL, TEXTPANEL };
-			//JComboBox cb = new JComboBox(comboBoxItems);
-			//cb.setEditable(false);
-			//cb.addItemListener(null);
-			//comboBoxPane.add(cb);
 
-			//Create the "cards".
 			JPanel card1 = new JPanel();
 			JPanel card2 = new JPanel();
 
@@ -72,7 +69,7 @@ public class FileOpener
 
 			JFrame frame = new JFrame("Please select an option");
 			frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-			//frame.add(comboBoxPane, BorderLayout.PAGE_START);
+
 			frame.add(cards, BorderLayout.CENTER);
 
 			frame.pack();
@@ -168,7 +165,7 @@ public class FileOpener
 			j.showOpenDialog(null);			//for open box
 			//j.showSaveDialog(null);		//for save box
 			**/
-
+			return frame;
 	 }
 
 		public void update()

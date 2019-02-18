@@ -18,130 +18,87 @@ import javax.swing.SwingUtilities;
 
 import cs260.game_model.TicTacToeGame;
 import cs260.game_model.TicTacToeListener;
-import cs260.game_model.IllegalMoveException;
 
-/**
- * @author cassa
- */
-public class FancyDisplay
-		extends JComponent
-		implements TicTacToeListener
-{
+public class FancyDisplay extends JComponent implements TicTacToeListener {
   private TicTacToeGame game;
 	private TicTacToeControl mouseController;
+	private static int WIDTH = 200;
+	private static int GAP = 20;
+	private static int LINE_WIDTH = 5;
 
-    private static int WIDTH = 200;
-    private static int GAP = 20;
-    private static int LINE_WIDTH = 5;
+	public JFileChooser j = new JFileChooser();
 
     public FancyDisplay(TicTacToeGame game){
-        this.game = game;
+			this.game = game;
+			mouseController = new TicTacToeControl(game, this);
 
-				mouseController = new TicTacToeControl(game, this);
+			setSize(new Dimension(WIDTH*3, WIDTH*3));
+			setPreferredSize(new Dimension(WIDTH*3, WIDTH*3));
 
-        setSize(new Dimension(WIDTH*3, WIDTH*3));
-        setPreferredSize(new Dimension(WIDTH*3, WIDTH*3));
-    }
+			this.add(menubar(), BorderLayout.CENTER);
 
-    public void paintComponent(Graphics g){
-        super.paintComponent(g);
+	 	}
 
-        //setLineWidth(g);
+		private JMenuBar menubar(){
+			JPanel panel1 = new JPanel(new CardLayout());
+			//panel1.setSize(400, 400);
 
-        menubuttons();
+			JMenuBar menubar = new JMenuBar();
+			menubar.setSize(WIDTH*3, WIDTH/4);
 
-				/**
-        try {
-            char piece;
+			JMenu fileMenu = new JMenu("Start");
 
-            for (int i= 0; i < 3; i++) {
-                for (int j = 0; j < 3; j++) {
-                    piece = game.getCell(i, j);
-                    if (piece == 'X') {
-                        drawX(g, i, j);
-                    } else if (piece == 'O') {
-                        drawO(g, i, j);
-                    }
-                }
-            }
-        } catch (IllegalMoveException e) {
-            throw new RuntimeException(e);
-        }
-				**/
+			JMenu importbutton = new JMenu("Import");
+					/**importbutton.addActionListener(new ActionListener(){
+						@Override
+				    public void actionPerformed(ActionEvent e) {
+							j.showOpenDialog(null);
+						}});**/
+			JMenu exportbutton = new JMenu("Export");
+					/**exportbutton.addActionListener(new ActionListener(){
+						@Override
+				    public void actionPerformed(ActionEvent e) {
+						 j.showSaveDialog(null);
+					 }});**/
 
-    }
+      JMenu impMenu = new JMenu("Extention");
 
-		private void menubuttons(){
+			JMenuItem newsMenuItem = new JMenuItem("Import newsfeed list...");
+			JMenuItem bookmarksMenuItem = new JMenuItem("Import bookmarks...");
+			JMenuItem importMailMenuItem = new JMenuItem("Import mail...");
 
-			 JPanel g = new JPanel();
-			 FlowLayout experimentLayout = new FlowLayout();
-       g.setLayout(experimentLayout);
+				impMenu.add(newsMenuItem);
+        impMenu.add(bookmarksMenuItem);
+        impMenu.add(importMailMenuItem);
 
+        JMenuItem newMenuItem = new JMenuItem("New");
+        JMenuItem openMenuItem = new JMenuItem("Open");
+        JMenuItem saveMenuItem = new JMenuItem("Save");
 
-		   g.add(new JButton("Button 1"));
-		   g.add(new JButton("Button 2"));
-		   g.add(new JButton("Button 3"));
-		   g.add(new JButton("Long-Named Button 4"));
-		   g.add(new JButton("5"));
+        JMenuItem exitMenuItem = new JMenuItem("Exit");
+        exitMenuItem.setToolTipText("Exit application");
+        exitMenuItem.addActionListener((event) -> System.exit(0));
 
-			 g.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
-				//draws the lines of tic tac toe
-				//g.drawLine(0, WIDTH, WIDTH*3, WIDTH);
-				//g.drawLine(WIDTH, 0, WIDTH, WIDTH*3);
-				//g.drawLine(0, WIDTH*2, WIDTH*3, WIDTH*2);
-				//g.drawLine(WIDTH*2, 0, WIDTH*2, WIDTH*3);
+        fileMenu.add(newMenuItem);
+        fileMenu.add(openMenuItem);
+        fileMenu.add(saveMenuItem);
+        fileMenu.addSeparator();
+        fileMenu.add(impMenu);
+        fileMenu.addSeparator();
+        fileMenu.add(exitMenuItem);
+				fileMenu.setVisible(true);
 
-		}
-
-		/**
-
-    public void showWinner(char winner){
-        JOptionPane.showMessageDialog(this,
-                                      winner + " WINS!!!");
-    }
-
-    public void showTieGame(){
-        JOptionPane.showMessageDialog(this,
-                                      "NOBODY WINS!!!");
-    }
-		**/
-
-    public int getRow(int xPixel){
-        return xPixel/WIDTH;
-    }
-
-    public int getColumn(int yPixel){
-        return yPixel/WIDTH;
-    }
-
-    private void setLineWidth(Graphics g){
-        ((Graphics2D) g).setStroke(new BasicStroke(LINE_WIDTH));
-    }
+        menubar.add(fileMenu);
+				menubar.add(importbutton);
+				menubar.add(exportbutton);
 
 
-
-		/**
-		private void drawLine(Graphics g){
-
+				return menubar;
 		}
 
 
-    private void drawX(Graphics g, int i, int j){
-        g.drawLine(i*WIDTH+GAP, j*WIDTH+GAP,
-                   i*WIDTH+WIDTH-GAP, j*WIDTH+WIDTH-GAP);
-        g.drawLine(i*WIDTH+WIDTH-GAP, j*WIDTH+GAP,
-                   i*WIDTH+GAP, j*WIDTH+WIDTH-GAP);
-    }
-
-
-    private void drawO(Graphics g, int i, int j){
-        g.drawOval(i*WIDTH + GAP, j*WIDTH + GAP, WIDTH-2*GAP, WIDTH-2*GAP);
-    }
-		**/
-
-	public void update(){
-		repaint();
-		System.out.print("\n Update is called: FancyDisplay\n");
-	}
-
+		public void update(){
+			repaint();
+			System.out.print("\n Update is called: FancyDisplay\n");
+		}
 }

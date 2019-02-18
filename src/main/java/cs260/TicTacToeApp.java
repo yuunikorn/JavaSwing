@@ -39,12 +39,12 @@ public class TicTacToeApp
         ///////////////////////////////
 
         //Step 5: create gamedisplay for game
-        FancyDisplay gameDisplay = new FancyDisplay(game);
+        FancyDisplay gameDisplay = new FancyDisplay(game); //<<<<<<
 
         //Step 6: create game.addListener for our game display
-		    game.addListener(gameDisplay);
+		    game.addListener(gameDisplay);//<<<<<<
 
-        mainFrame.getContentPane().add(gameDisplay);
+        mainFrame.getContentPane().add(gameDisplay);//<<<<<<
         mainFrame.pack();
         mainFrame.setVisible(true);
 
