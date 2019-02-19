@@ -18,7 +18,7 @@ import javax.swing.SwingUtilities;
 
 import cs260.game_model.TicTacToeGame;
 import cs260.game_model.TicTacToeListener;
-import cs260.opensave.OpenSaveOptions;
+import cs260.gui_methods.OpenSaveOptions;
 
 public class FancyDisplay extends JComponent implements TicTacToeListener {
 	private TicTacToeGame game;
