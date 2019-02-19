@@ -18,6 +18,7 @@ import javax.swing.SwingUtilities;
 
 import cs260.game_model.TicTacToeGame;
 import cs260.game_model.TicTacToeListener;
+import cs260.openfile.FileOpener.*;
 
 public class FancyDisplay extends JComponent implements TicTacToeListener {
   private TicTacToeGame game;
@@ -25,10 +26,11 @@ public class FancyDisplay extends JComponent implements TicTacToeListener {
 	private static int WIDTH = 200;
 	private static int GAP = 20;
 	private static int LINE_WIDTH = 5;
+	FileOpener CanOpener = new FileOpener();
 
 	public JFileChooser j = new JFileChooser();
 
-    public FancyDisplay(TicTacToeGame game){
+	public FancyDisplay(TicTacToeGame game){
 			this.game = game;
 			mouseController = new TicTacToeControl(game, this);
 
@@ -44,17 +46,21 @@ public class FancyDisplay extends JComponent implements TicTacToeListener {
 			//panel1.setSize(400, 400);
 
 			JMenuBar menubar = new JMenuBar();
-			menubar.setSize(WIDTH*3, WIDTH/4);
+			menubar.setSize(WIDTH*10, WIDTH/5);
 
 			JMenu fileMenu = new JMenu("Start");
 
-			JMenu importbutton = new JMenu("Import");
+			JMenuItem importbutton = new JMenu("Import");
+			//importbutton.addActionListener((event) -> OpenOption(importbutton));
+			//JButton importbutton = new JButton("Import");
 					/**importbutton.addActionListener(new ActionListener(){
 						@Override
 				    public void actionPerformed(ActionEvent e) {
 							j.showOpenDialog(null);
 						}});**/
-			JMenu exportbutton = new JMenu("Export");
+			JMenuItem exportbutton = new JMenu("Export");
+			//exportbutton.addActionListener((event) -> CanOpener.SaveOption(exportbutton));
+			//JButton exportbutton = new JButton("Export");
 					/**exportbutton.addActionListener(new ActionListener(){
 						@Override
 				    public void actionPerformed(ActionEvent e) {
