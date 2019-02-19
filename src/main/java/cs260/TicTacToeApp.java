@@ -8,7 +8,7 @@ import cs260.game_model.TicTacToeGame;
 import cs260.gui.FancyDisplay;
 
 //import cs260.turn_gui.TurnIndicator;
-import cs260.openfile.FileOpener;
+//import cs260.openfile.FileOpener;
 
 
 public class TicTacToeApp
@@ -34,8 +34,8 @@ public class TicTacToeApp
 
         ////// tictactoe openfile /////
         //JFrame fileChoose = new JFrame("Tic Tac Toe");
-        FileOpener file = new FileOpener(game);
-        game.addListener(file);
+        //FileOpener file = new FileOpener(game);
+        //game.addListener(file);
         ///////////////////////////////
 
         //Step 5: create gamedisplay for game
