@@ -37,15 +37,65 @@ public class FancyDisplay extends JComponent implements TicTacToeListener {
 		this.game = game;
 		mouseController = new TicTacToeControl(game, this);
 
-		setSize(new Dimension(WIDTH*3, WIDTH*3));
-		setPreferredSize(new Dimension(WIDTH*3, WIDTH*3));
+		setSize(new Dimension(WIDTH*4, WIDTH*3));
+		setPreferredSize(new Dimension(WIDTH*4, WIDTH*3));
 
-		this.add(menubar(), BorderLayout.CENTER);
+		this.add(menubar(), BorderLayout.NORTH);
+		this.add(sidebar(), BorderLayout.WEST);
+		this.add(MainCanvas(), BorderLayout.CENTER);
 
 	}
 
+private JPanel MainCanvas(){
+	JPanel pCenter = new JPanel();
+	Box horizontalBox = new Box(BoxLayout.LINE_AXIS);
+
+		//Box horizontalBox = Box.createHorizontalBox();
+    horizontalBox.add(new JLabel("Left"));
+    horizontalBox.add(new JTextField("Middle"));
+    horizontalBox.add(new JButton("Right"));
+		horizontalBox.setBackground(Color.BLUE);
+    pCenter.add(horizontalBox, BorderLayout.SOUTH);
+    pCenter.setSize(300, 300);
+    //pCenter.setVisible(true);
+
+
+	return pCenter;
+
+}
+
+
+
+
+	private JPanel sidebar(){
+
+		JPanel panel = new JPanel();
+		//panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+		//panel.setLayout(new GridBagLayout());
+
+		GridLayout experimentLayout = new GridLayout(10,1);
+		panel.setLayout(experimentLayout);
+
+		//panel.setAlignmentX(Component.LEFT_ALIGNMENT);
+		panel.setSize(WIDTH/3, WIDTH*3);
+
+		//panel.add(new JSeparator(JSeparator.VERTICAL));
+		panel.add(new JSeparator(JSeparator.VERTICAL));
+		panel.add(new JButton("MEEP"));
+		panel.add(new JButton("MOOP"));
+		panel.add(new JButton("32"));
+		panel.add(new JButton("MOO3P"));
+		panel.add(new JButton("2"));
+		panel.add(new JButton("MO4OP"));
+		panel.add(new JButton("MOrOP"));
+		panel.add(new JButton("ffef2f"));
+
+		return panel;
+	}
+
+
 	private JMenuBar menubar(){
-		JPanel panel1 = new JPanel(new CardLayout());
+		//JPanel panel1 = new JPanel(new CardLayout());
 		//panel1.setSize(400, 400);
 
 		JMenuBar menubar = new JMenuBar();
@@ -100,6 +150,8 @@ public class FancyDisplay extends JComponent implements TicTacToeListener {
 		CanOpener.SaveOption(saveMenuItem);
 		CanOpener.OpenOption(importbutton);
 		CanOpener.SaveOption(exportbutton);
+
+		//panel1.add(menubar);
 
 		return menubar;
 }
