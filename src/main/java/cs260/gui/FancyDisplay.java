@@ -42,27 +42,32 @@ public class FancyDisplay extends JComponent implements TicTacToeListener {
 
 		this.add(menubar(), BorderLayout.NORTH);
 		this.add(sidebar(), BorderLayout.WEST);
-		this.add(MainCanvas(), BorderLayout.CENTER);
+		//this.add(MainCanvas(), BorderLayout.CENTER);
 
 	}
-
+/**
 private JPanel MainCanvas(){
+
+
 	JPanel pCenter = new JPanel();
 	Box horizontalBox = new Box(BoxLayout.LINE_AXIS);
-
+	//setLayout (new BoxLayout(this, BoxLayout.X_AXIS));
 		//Box horizontalBox = Box.createHorizontalBox();
     horizontalBox.add(new JLabel("Left"));
     horizontalBox.add(new JTextField("Middle"));
     horizontalBox.add(new JButton("Right"));
 		horizontalBox.setBackground(Color.BLUE);
+		horizontalBox.setVisible(true);
+
     pCenter.add(horizontalBox, BorderLayout.SOUTH);
     pCenter.setSize(300, 300);
+		pCenter.setVisible(true);
     //pCenter.setVisible(true);
 
 
 	return pCenter;
 
-}
+}**/
 
 
 
