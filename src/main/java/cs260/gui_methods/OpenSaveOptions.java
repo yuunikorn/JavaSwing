@@ -47,7 +47,7 @@ public class OpenSaveOptions{
 				}
 			}
 		});
-		System.out.print("\nOpenOption is called");
+		//System.out.print("\nOpenOption is called");
 	}
 
 	public static void SaveOption(AbstractButton b2){
@@ -75,7 +75,7 @@ public class OpenSaveOptions{
 				}
 			}
 		});
-		System.out.print("\nSaveOption is called");
+		//System.out.print("\nSaveOption is called");
 	}
 
 	public static void CancelOption(AbstractButton b3){	//AbstractButton are JButtons and JMenu items
@@ -83,13 +83,10 @@ public class OpenSaveOptions{
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-
-				//frame.setVisible(false);
-
 			}
 		});
 		//System.exit(0);
-		System.out.print("\nCancelOption is called");
+		//System.out.print("\nCancelOption is called");
 	}
 
 }

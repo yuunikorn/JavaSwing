@@ -60,14 +60,14 @@ public class FancyDisplay extends JComponent implements TicTacToeListener {
 
 		//panel.add(new JSeparator(JSeparator.VERTICAL));
 		panel.add(new JSeparator(JSeparator.VERTICAL));
-		panel.add(new JButton("MEEP"));
-		panel.add(new JButton("MOOP"));
-		panel.add(new JButton("32"));
-		panel.add(new JButton("MOO3P"));
-		panel.add(new JButton("2"));
-		panel.add(new JButton("MO4OP"));
-		panel.add(new JButton("MOrOP"));
-		panel.add(new JButton("ffef2f"));
+		panel.add(new JButton("Vertex"));
+		panel.add(new JButton("Edge"));
+		panel.add(new JButton("Rename"));
+		panel.add(new JButton("insert"));
+		panel.add(new JButton("something"));
+		panel.add(new JButton("here"));
+		panel.add(new JButton("?!?!"));
+		panel.add(new JButton("Clear All"));
 
 		return panel;
 	}

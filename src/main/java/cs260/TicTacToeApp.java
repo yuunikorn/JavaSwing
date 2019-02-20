@@ -9,7 +9,7 @@ import cs260.gui.FancyDisplay;
 
 //import cs260.turn_gui.TurnIndicator;
 //import cs260.openfile.FileOpener;
-
+import cs260.javapaint.BasicPaint;
 
 public class TicTacToeApp
 {
@@ -20,6 +20,11 @@ public class TicTacToeApp
         //Step 2: call main.start
         TicTacToeApp main = new TicTacToeApp();
         main.start();
+
+        //calls a painter object
+        BasicPaint painter = new BasicPaint();
+        painter.main(args);
+
     }
 
     public void start()
@@ -32,11 +37,6 @@ public class TicTacToeApp
         //Step 4: create TTTgame called game with player x
         TicTacToeGame game = new TicTacToeGame('X');
 
-        ////// tictactoe openfile /////
-        //JFrame fileChoose = new JFrame("Tic Tac Toe");
-        //FileOpener file = new FileOpener(game);
-        //game.addListener(file);
-        ///////////////////////////////
 
         //Step 5: create gamedisplay for game
         FancyDisplay gameDisplay = new FancyDisplay(game); //<<<<<<
@@ -48,14 +48,7 @@ public class TicTacToeApp
         mainFrame.pack();
         mainFrame.setVisible(true);
 
-        //JFrame turnFrame = new JFrame("Tic Tac Toe");
-        //TurnIndicator indicator = new TurnIndicator(game);
 
-        //game.addListener(indicator);
-        //turnFrame.getContentPane().add(indicator);
-
-        //turnFrame.pack();
-        //turnFrame.setVisible(true);
 
         System.out.print("\nListener is added: TicTacToeApp\n");
 
