@@ -2,14 +2,15 @@ package cs260;
 
 import javax.swing.JFrame;
 
-
 import cs260.game_model.TicTacToeGame;
 
-import cs260.gui.FancyDisplay;
+import cs260.gui.MainDisplay;
 
 //import cs260.turn_gui.TurnIndicator;
-//import cs260.openfile.FileOpener;
+
 import cs260.javapaint.BasicPaint;
+
+//import cs260.gui.CanvasDisplay;
 
 public class TicTacToeApp
 {
@@ -27,8 +28,7 @@ public class TicTacToeApp
 
     }
 
-    public void start()
-    {
+    public void start(){
       System.out.print("\n Start() is called: TicTacToeApp\n");
 
         //Step 3: create jframe called main frame
@@ -39,7 +39,7 @@ public class TicTacToeApp
 
 
         //Step 5: create gamedisplay for game
-        FancyDisplay gameDisplay = new FancyDisplay(game); //<<<<<<
+        MainDisplay gameDisplay = new MainDisplay(game); //<<<<<<
 
         //Step 6: create game.addListener for our game display
 		    game.addListener(gameDisplay);//<<<<<<
@@ -47,7 +47,6 @@ public class TicTacToeApp
         mainFrame.getContentPane().add(gameDisplay);//<<<<<<
         mainFrame.pack();
         mainFrame.setVisible(true);
-
 
 
         System.out.print("\nListener is added: TicTacToeApp\n");

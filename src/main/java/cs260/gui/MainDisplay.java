@@ -13,38 +13,57 @@ import javax.swing.JOptionPane;
 import java.io.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.awt.image.BufferedImage;
 import javax.swing.*;
 import javax.swing.SwingUtilities;
 
 import cs260.game_model.TicTacToeGame;
 import cs260.game_model.TicTacToeListener;
 import cs260.gui_methods.OpenSaveOptions;
+//import cs260.gui.CanvasDisplay;
 
-public class FancyDisplay extends JComponent implements TicTacToeListener {
+public class MainDisplay extends JComponent implements TicTacToeListener {
 	private TicTacToeGame game;
 	private TicTacToeControl mouseController;
 	private OpenSaveOptions CanOpener;
+	private JLabel output = new JLabel("XYcoordinates");
+	//private CanvasDisplay canvas;
+
 
 	private static int WIDTH = 200;
 	private static int GAP = 20;
 	private static int LINE_WIDTH = 5;
 
 
-	//	public JFileChooser j = new JFileChooser();
-
-
-	public FancyDisplay(TicTacToeGame game){
+	public MainDisplay(TicTacToeGame game){
 		this.game = game;
 		mouseController = new TicTacToeControl(game, this);
 
 		setSize(new Dimension(WIDTH*4, WIDTH*3));
 		setPreferredSize(new Dimension(WIDTH*4, WIDTH*3));
+		setLayout(new BorderLayout());
 
 		this.add(menubar(), BorderLayout.NORTH);
 		this.add(sidebar(), BorderLayout.WEST);
-		//this.add(MainCanvas(), BorderLayout.CENTER);
-
+		this.add(MainCanvas(game), BorderLayout.CENTER);
+		this.add(output,BorderLayout.PAGE_END);
 	}
+
+
+	private JPanel MainCanvas(TicTacToeGame game){
+		//this.game = game;
+		//canvas.CanvasDisplay();
+		JPanel panel = new JPanel();
+		panel.setBackground(Color.WHITE);
+		//panel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+		panel.setSize(new Dimension(300,300));
+		panel.setPreferredSize(new Dimension(300,300));
+
+		//panel.addMouseMotionListener(game);
+		return panel;
+	}
+
+
 
 	private JPanel sidebar(){
 
@@ -69,6 +88,10 @@ public class FancyDisplay extends JComponent implements TicTacToeListener {
 		panel.add(new JButton("?!?!"));
 		panel.add(new JButton("Clear All"));
 
+		//canvasImage = new BufferedImage(50,30,BufferedImage.TYPE_INT_ARGB);
+		//panel.add(canvasImage);
+
+
 		return panel;
 	}
 
@@ -85,7 +108,6 @@ public class FancyDisplay extends JComponent implements TicTacToeListener {
 
 		JButton importbutton = new JButton("Import");
 		JButton exportbutton = new JButton("Export");
-
 
 		JMenu impMenu = new JMenu("Extention");
 		JMenuItem newsMenuItem = new JMenuItem("Import newsfeed list...");
@@ -133,33 +155,18 @@ public class FancyDisplay extends JComponent implements TicTacToeListener {
 		return menubar;
 }
 
-/**
-private JPanel MainCanvas(){
+public void xyCoordListener(int x, int y){
 
-
-JPanel pCenter = new JPanel();
-Box horizontalBox = new Box(BoxLayout.LINE_AXIS);
-//setLayout (new BoxLayout(this, BoxLayout.X_AXIS));
-	//Box horizontalBox = Box.createHorizontalBox();
-	horizontalBox.add(new JLabel("Left"));
-	horizontalBox.add(new JTextField("Middle"));
-	horizontalBox.add(new JButton("Right"));
-	horizontalBox.setBackground(Color.BLUE);
-	horizontalBox.setVisible(true);
-
-	pCenter.add(horizontalBox, BorderLayout.SOUTH);
-	pCenter.setSize(300, 300);
-	pCenter.setVisible(true);
-	//pCenter.setVisible(true);
-
-
-return pCenter;
-
-}**/
+	String text = "";
+	text += "X,Y: " + x + "," + y;
+	output.setText(text);
+	//return output;
+}
 
 
 public void update(){
 	repaint();
-	System.out.print("\n Update is called: FancyDisplay\n");
+	System.out.print("\n Update is called: MainDisplay\n");
 }
+
 }

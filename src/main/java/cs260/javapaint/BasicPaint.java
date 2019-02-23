@@ -431,6 +431,11 @@ public class BasicPaint {
         }
     }
 
+
+
+
+
+
     class ImageMouseMotionListener implements MouseMotionListener {
 
         @Override
@@ -451,8 +456,8 @@ public class BasicPaint {
         public void mouseMoved(MouseEvent arg0) {
             reportPositionAndColor(arg0);
         }
-
     }
+
 
     private void reportPositionAndColor(MouseEvent me) {
         String text = "";
@@ -470,4 +475,8 @@ public class BasicPaint {
         }
         output.setText(text);
     }
+
+
+
+
 }
