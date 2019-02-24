@@ -20,15 +20,15 @@ import javax.swing.SwingUtilities;
 import cs260.game_model.TicTacToeGame;
 import cs260.game_model.TicTacToeListener;
 import cs260.gui_methods.OpenSaveOptions;
-//import cs260.gui.CanvasDisplay;
+import cs260.gui.CanvasDisplay;
+
 
 public class MainDisplay extends JComponent implements TicTacToeListener {
 	private TicTacToeGame game;
-	private TicTacToeControl mouseController;
+	private MainDisplayControl mouseController;
 	private OpenSaveOptions CanOpener;
 	private JLabel output = new JLabel("XYcoordinates");
-	//private CanvasDisplay canvas;
-
+	private CanvasDisplay canvas;
 
 	private static int WIDTH = 200;
 	private static int GAP = 20;
@@ -37,7 +37,7 @@ public class MainDisplay extends JComponent implements TicTacToeListener {
 
 	public MainDisplay(TicTacToeGame game){
 		this.game = game;
-		mouseController = new TicTacToeControl(game, this);
+		mouseController = new MainDisplayControl(game, this);
 
 		setSize(new Dimension(WIDTH*4, WIDTH*3));
 		setPreferredSize(new Dimension(WIDTH*4, WIDTH*3));
@@ -45,24 +45,28 @@ public class MainDisplay extends JComponent implements TicTacToeListener {
 
 		this.add(menubar(), BorderLayout.NORTH);
 		this.add(sidebar(), BorderLayout.WEST);
-		this.add(MainCanvas(game), BorderLayout.CENTER);
 		this.add(output,BorderLayout.PAGE_END);
+
+		CanvasDisplay canvas = new CanvasDisplay(game);
+		this.add(canvas, BorderLayout.CENTER);
+
 	}
 
+/**
+	private JComponent MainCanvas(TicTacToeGame game){
+		MainDisplay gameDisplay = new MainDisplay(game);
+		JComponent panel = canvas.CanvasDisplay(game);
 
-	private JPanel MainCanvas(TicTacToeGame game){
-		//this.game = game;
-		//canvas.CanvasDisplay();
 		JPanel panel = new JPanel();
 		panel.setBackground(Color.WHITE);
 		//panel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 		panel.setSize(new Dimension(300,300));
 		panel.setPreferredSize(new Dimension(300,300));
 
-		//panel.addMouseMotionListener(game);
+
 		return panel;
 	}
-
+**/
 
 
 	private JPanel sidebar(){
