@@ -53,31 +53,41 @@ public class CanvasDisplay extends JComponent implements TicTacToeListener{
 
       //position of edges
       Graph = new HashMap<String,ArrayList<String>>(); //<Vertex, ArrayList of edges>
-        ArrayList<String> edge = new ArrayList<String>(); //edges associated with specific vertex
 
-//initialization Graphics test
-/**
-      VertexPosition.put("START", new Point(50,50));
-      VertexPosition.put("END", new Point(100,100));
+      //initialization Graphics test here or add hashmap graph
+            VertexPosition.put("START", new Point(150,250));
+            VertexPosition.put("END", new Point(600,100));
+            VertexPosition.put("MID", new Point(75,10));
+            VertexPosition.put("SEMI", new Point(120,450));
 
-      edge.add("END");
-      graph.put("START", edge);
-      graph.put("END", null);
-**/
+            ArrayList<String> edge = new ArrayList<String>(); //edges associated with specific vertex
+            edge.add("END");
+            edge.add("MID");
+            edge.add("SEMI");
+            Graph.put("START", edge);
+            Graph.put("END", null);
+
+
   }
 
 
-    public void drawVertex(Graphics g){
+        public void drawVertex(Graphics g){
 
-      for (String vertex : VertexPosition.keySet()) {
-        Point position = VertexPosition.get(vertex);
-        g.fillOval( (int)position.getX() , (int)position.getY() , CIRCLEWIDTH,CIRCLEWIDTH);
-        g.setColor(Color.BLACK);
-      }
+          for (String vertex : VertexPosition.keySet()) {
+            Point position = VertexPosition.get(vertex);
+            int x = (int)position.getX();
+            int y = (int)position.getY();
+            g.fillOval( x , y , CIRCLEWIDTH,CIRCLEWIDTH);
+            g.setColor(Color.BLACK);
 
-      System.out.print("\ndrawVertex is called\n");
-      //this.update();
-    }
+            JTextArea textArea = new JTextArea(vertex);
+            this.add(textArea);
+            textArea.setBounds(x+7, y+7, 40, 20);
+          }
+
+          System.out.print("\ndrawVertex is called\n");
+          //this.update();
+        }
 
         public void captureVertex(int x, int y){
 
@@ -88,10 +98,37 @@ public class CanvasDisplay extends JComponent implements TicTacToeListener{
           this.update();
         }
 
-    public void drawEdge(Graphics g){
-      
 
-    }
+
+        private void drawEdge(Graphics g){
+          for (String vertex : Graph.keySet()){
+            if (Graph.get(vertex) != null){
+              for (String edge : Graph.get(vertex)){
+                Point start = VertexPosition.get(vertex);
+                Point end = VertexPosition.get(edge);
+                g.drawLine(start.x + CIRCLERADIUS,start.y + CIRCLERADIUS,end.x + CIRCLERADIUS,end.y + CIRCLERADIUS);
+                int midx = (start.x + end.x) / 2;
+                int midy = (start.y + end.y) / 2;
+                //g.fillRect(midx + 20, midy - 10, 50, 20);
+
+                JTextArea textArea = new JTextArea("Route Name");
+                this.add(textArea);
+                textArea.setBounds(midx, midy, 80, 20);
+
+                }
+              }
+            }
+          }
+
+
+        public void captureEdge(int x, int y){
+
+          VertexPosition.put(VerPoints, new Point(x,y));
+          VerPoints += "1";
+
+          System.out.print("\ncaptureVertex is called\n");
+          this.update();
+        }
 
 
 /////////////////// Draws everything we need
@@ -100,6 +137,7 @@ public void paintComponent(Graphics g){
     //g.setColor(Color.BLACK);
 
     drawVertex(g);
+    drawEdge(g);
 }
 
 
