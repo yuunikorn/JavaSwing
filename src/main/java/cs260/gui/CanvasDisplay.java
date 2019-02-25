@@ -28,6 +28,7 @@ public class CanvasDisplay extends JComponent implements TicTacToeListener{
   private CanvasDisplayControl mouseController;
   private HashMap<String,ArrayList<String>> Graph;
   private HashMap<String, Point> VertexPosition;
+  private Object selected;
 
   private static int WIDTH = 200; //from TicTacToe
   private static int GAP = 20;
@@ -55,6 +56,9 @@ public class CanvasDisplay extends JComponent implements TicTacToeListener{
       Graph = new HashMap<String,ArrayList<String>>(); //<Vertex, ArrayList of edges>
 
       //initialization Graphics test here or add hashmap graph
+
+
+
             VertexPosition.put("START", new Point(150,250));
             VertexPosition.put("END", new Point(600,100));
             VertexPosition.put("MID", new Point(75,10));
@@ -68,9 +72,13 @@ public class CanvasDisplay extends JComponent implements TicTacToeListener{
             Graph.put("END", null);
 
 
+
+
+
   }
 
 
+/////////////////// Vertexes
         public void drawVertex(Graphics g){
 
           for (String vertex : VertexPosition.keySet()) {
@@ -79,6 +87,8 @@ public class CanvasDisplay extends JComponent implements TicTacToeListener{
             int y = (int)position.getY();
             g.fillOval( x , y , CIRCLEWIDTH,CIRCLEWIDTH);
             g.setColor(Color.BLACK);
+
+
 
             JTextArea textArea = new JTextArea(vertex);
             this.add(textArea);
@@ -90,14 +100,20 @@ public class CanvasDisplay extends JComponent implements TicTacToeListener{
         }
 
         public void captureVertex(int x, int y){
-
           VertexPosition.put(VerPoints, new Point(x,y));
           VerPoints += "1";
-
           System.out.print("\ncaptureVertex is called\n");
           this.update();
         }
 
+
+        private void selectedVertex(){
+
+        }
+
+        private void dragVertex(){
+
+        }
 
 
         private void drawEdge(Graphics g){
@@ -114,13 +130,15 @@ public class CanvasDisplay extends JComponent implements TicTacToeListener{
                 JTextArea textArea = new JTextArea("Route Name");
                 this.add(textArea);
                 textArea.setBounds(midx, midy, 80, 20);
-
                 }
               }
             }
           }
 
+          private void captureVertexLabel(int x, int y){ //for changing vertex labels
+          }
 
+/////////////////// Edges
         public void captureEdge(int x, int y){
 
           VertexPosition.put(VerPoints, new Point(x,y));
