@@ -43,6 +43,9 @@ public class OpenSaveOptions{
 
 					File file = j.getSelectedFile();
 					String fullPath = file.getAbsolutePath();
+
+					//something.getfilepathname(fullPath)
+
 					System.out.println(fullPath);
 				}
 			}

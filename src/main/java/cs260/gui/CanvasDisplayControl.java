@@ -14,6 +14,7 @@ import cs260.game_model.IllegalMoveException;
 public class CanvasDisplayControl implements MouseListener, MouseMotionListener, KeyListener{
     private TicTacToeGame game;
     private CanvasDisplay gameDisplay;
+    private String altered;
 
     public CanvasDisplayControl(TicTacToeGame game, CanvasDisplay gameDisplay)
     {
@@ -34,7 +35,7 @@ public class CanvasDisplayControl implements MouseListener, MouseMotionListener,
       //gameDisplay.captureVertex(x,y);
       gameDisplay.checkClicked(x,y);
 
-      System.out.print("\nCANVASCLICK: " + x + "," + y + "\n");
+      //System.out.print("\nCANVASCLICK: " + x + "," + y + "\n");
     }
 
 
@@ -69,12 +70,19 @@ public class CanvasDisplayControl implements MouseListener, MouseMotionListener,
 
     @Override
     public void mouseDragged(MouseEvent e) {
-      System.out.print("\nmouseDRAGGED event is called: CANVACDISPLAYCONTROL\n");
+      //System.out.print("\nmouseDRAGGED event is called: CANVACDISPLAYCONTROL\n");
 
       }
 
 //////////////////////key listener
     public void keyTyped(KeyEvent e) {
+
+//      while (e.getKeyChar() != "\n"){
+//        char character = e.getKeyChar();
+//        altered += character;
+//      }
+
+      //gameDisplay.keystrokeListener();
         //displayInfo(e, "KEY TYPED: ");
     }
 

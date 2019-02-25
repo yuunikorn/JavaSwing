@@ -15,9 +15,10 @@ import java.awt.*;
 import java.awt.Point;
 import java.util.*;
 import java.awt.event.*;
-import java.awt.image.BufferedImage;
 import javax.swing.*;
 import javax.swing.SwingUtilities;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
 import cs260.game_model.TicTacToeGame;
 import cs260.game_model.TicTacToeListener;
@@ -28,7 +29,6 @@ public class CanvasDisplay extends JComponent implements TicTacToeListener{
   private CanvasDisplayControl mouseController;
   private HashMap<String,ArrayList<String>> Graph;
   private HashMap<String, Point> VertexPosition;
-  private ArrayList<Object> Selected;
   private Object selectedpoint;
 
   private static int WIDTH = 200; //from TicTacToe
@@ -38,10 +38,10 @@ public class CanvasDisplay extends JComponent implements TicTacToeListener{
   private static int CIRCLEWIDTH = 12;  //for size of vertex
   private static int CIRCLERADIUS = CIRCLEWIDTH/2;
   String VerPoints = "1"; //Key of # of vertexes
-
-
+  String altered;
 
   private JLabel output = new JLabel("XYcoordinates");
+  private ArrayList<String> selectedArray;
 
 
   public CanvasDisplay(TicTacToeGame game){
@@ -73,7 +73,7 @@ public class CanvasDisplay extends JComponent implements TicTacToeListener{
             Graph.put("START", edge);
             Graph.put("END", null);
 
-            ArrayList<Object> Selected = new ArrayList<Object>();
+            selectedArray = new ArrayList<String>();
   }
 
 
@@ -82,31 +82,47 @@ public class CanvasDisplay extends JComponent implements TicTacToeListener{
 
           for (String vertex : VertexPosition.keySet()) {
             Point position = VertexPosition.get(vertex);
-            if (vertex.equals(selectedpoint)) {
-            //if (Selected != null){
-              //if (Selected.contains(vertex)) {
+
+
+            //if (vertex.equals(selectedpoint)) {   //change when done
+            if (selectedArray.contains(vertex)){
                 g.setColor(Color.RED);
-              //}}
             }
+
             int x = (int)position.getX();
             int y = (int)position.getY();
             g.fillOval( x , y , CIRCLEWIDTH,CIRCLEWIDTH);
             g.setColor(Color.BLACK);
 
             JTextArea textArea = new JTextArea(vertex);
-            this.add(textArea);
             textArea.setBounds(x+CIRCLEWIDTH, y, 40, 20);
+            this.add(textArea);
+
+
+          //  if((altered != null) && (altered != vertex)){
+          //    VertexPosition.put(altered, VertexPosition.get(vertex));
+          //    VertexPosition.remove(vertex);
+          //  }
+
+
+
           }
 
-          System.out.print("\ndrawVertex is called\n");
+          //System.out.print("\ndrawVertex is called\n");
           //this.update();
+
         }
 
+        public void keystrokeListener(String word){
+        	altered = word;
+          System.out.println(word);
+          System.out.println(altered);
+        }
 
         public void captureVertex(int x, int y){
           VertexPosition.put(VerPoints, new Point(x,y));
           VerPoints += "1";
-          System.out.print("\ncaptureVertex is called\n");
+          //System.out.print("\ncaptureVertex is called\n");
           this.update();
         }
 
@@ -116,16 +132,27 @@ public class CanvasDisplay extends JComponent implements TicTacToeListener{
             Point position = VertexPosition.get(vertex);
             if (x >= position.x && x <= (position.x + CIRCLEWIDTH) && y >= position.y && y <= (position.y + CIRCLEWIDTH)){
 
-              //if (Selected != null){
-              //  Selected.add(vertex);
-              //}
-              selectedpoint = vertex;
-
-              System.out.println(vertex);
+              if (!selectedArray.contains(vertex)){
+                selectedArray.add(vertex);
+              }
+              else{
+                selectedArray.remove(vertex);
+              }
+              //System.out.println(vertex);
             }
           }
+
+          if (selectedArray.size() == 1){
+            String newvertexPos = selectedArray.get(0);
+            Point newpost = new Point(x,y);
+            VertexPosition.put(newvertexPos, newpost);
+
+          }
+
+
           this.update();
         }
+
 
 
         private void dragVertex(){
@@ -161,7 +188,7 @@ public class CanvasDisplay extends JComponent implements TicTacToeListener{
           VertexPosition.put(VerPoints, new Point(x,y));
           VerPoints += "1";
 
-          System.out.print("\ncaptureVertex is called\n");
+          //System.out.print("\ncaptureVertex is called\n");
           this.update();
         }
 
@@ -170,10 +197,15 @@ public class CanvasDisplay extends JComponent implements TicTacToeListener{
 public void paintComponent(Graphics g){
     super.paintComponent(g);
     //g.setColor(Color.BLACK);
+    this.removeAll();
 
     drawVertex(g);
     drawEdge(g);
     //drawSelectedVertex(g);
+    System.out.println(selectedArray);
+
+
+
 }
 
 
@@ -189,6 +221,9 @@ public JLabel posUpdate(){
 }
 ///////////////////
 
+public ArrayList<String> getPath(){
+  return selectedArray;
+}
 
 	public void update(){
 		repaint();
