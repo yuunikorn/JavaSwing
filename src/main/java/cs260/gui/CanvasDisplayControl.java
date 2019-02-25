@@ -31,7 +31,8 @@ public class CanvasDisplayControl implements MouseListener, MouseMotionListener,
       int x = e.getX();
       int y = e.getY();
 
-      gameDisplay.captureVertex(x,y);
+      //gameDisplay.captureVertex(x,y);
+      gameDisplay.checkClicked(x,y);
 
       System.out.print("\nCANVASCLICK: " + x + "," + y + "\n");
     }

@@ -28,7 +28,8 @@ public class CanvasDisplay extends JComponent implements TicTacToeListener{
   private CanvasDisplayControl mouseController;
   private HashMap<String,ArrayList<String>> Graph;
   private HashMap<String, Point> VertexPosition;
-  private Object selected;
+  private ArrayList<Object> Selected;
+  private Object selectedpoint;
 
   private static int WIDTH = 200; //from TicTacToe
   private static int GAP = 20;
@@ -37,6 +38,8 @@ public class CanvasDisplay extends JComponent implements TicTacToeListener{
   private static int CIRCLEWIDTH = 12;  //for size of vertex
   private static int CIRCLERADIUS = CIRCLEWIDTH/2;
   String VerPoints = "1"; //Key of # of vertexes
+
+
 
   private JLabel output = new JLabel("XYcoordinates");
 
@@ -55,8 +58,7 @@ public class CanvasDisplay extends JComponent implements TicTacToeListener{
       //position of edges
       Graph = new HashMap<String,ArrayList<String>>(); //<Vertex, ArrayList of edges>
 
-      //initialization Graphics test here or add hashmap graph
-
+      //initialization Graphics test here or add hashmap Graph
 
 
             VertexPosition.put("START", new Point(150,250));
@@ -71,10 +73,7 @@ public class CanvasDisplay extends JComponent implements TicTacToeListener{
             Graph.put("START", edge);
             Graph.put("END", null);
 
-
-
-
-
+            ArrayList<Object> Selected = new ArrayList<Object>();
   }
 
 
@@ -83,21 +82,26 @@ public class CanvasDisplay extends JComponent implements TicTacToeListener{
 
           for (String vertex : VertexPosition.keySet()) {
             Point position = VertexPosition.get(vertex);
+            if (vertex.equals(selectedpoint)) {
+            //if (Selected != null){
+              //if (Selected.contains(vertex)) {
+                g.setColor(Color.RED);
+              //}}
+            }
             int x = (int)position.getX();
             int y = (int)position.getY();
             g.fillOval( x , y , CIRCLEWIDTH,CIRCLEWIDTH);
             g.setColor(Color.BLACK);
 
-
-
             JTextArea textArea = new JTextArea(vertex);
             this.add(textArea);
-            textArea.setBounds(x+7, y+7, 40, 20);
+            textArea.setBounds(x+CIRCLEWIDTH, y, 40, 20);
           }
 
           System.out.print("\ndrawVertex is called\n");
           //this.update();
         }
+
 
         public void captureVertex(int x, int y){
           VertexPosition.put(VerPoints, new Point(x,y));
@@ -106,16 +110,32 @@ public class CanvasDisplay extends JComponent implements TicTacToeListener{
           this.update();
         }
 
+        public void checkClicked(int x, int y) {
 
-        private void selectedVertex(){
+          for (String vertex : VertexPosition.keySet()) {
+            Point position = VertexPosition.get(vertex);
+            if (x >= position.x && x <= (position.x + CIRCLEWIDTH) && y >= position.y && y <= (position.y + CIRCLEWIDTH)){
 
+              //if (Selected != null){
+              //  Selected.add(vertex);
+              //}
+              selectedpoint = vertex;
+
+              System.out.println(vertex);
+            }
+          }
+          this.update();
         }
+
 
         private void dragVertex(){
 
         }
 
+        private void captureVertexLabel(int x, int y){ //for changing vertex labels
+        }
 
+/////////////////// Edges
         private void drawEdge(Graphics g){
           for (String vertex : Graph.keySet()){
             if (Graph.get(vertex) != null){
@@ -125,7 +145,7 @@ public class CanvasDisplay extends JComponent implements TicTacToeListener{
                 g.drawLine(start.x + CIRCLERADIUS,start.y + CIRCLERADIUS,end.x + CIRCLERADIUS,end.y + CIRCLERADIUS);
                 int midx = (start.x + end.x) / 2;
                 int midy = (start.y + end.y) / 2;
-                //g.fillRect(midx + 20, midy - 10, 50, 20);
+
 
                 JTextArea textArea = new JTextArea("Route Name");
                 this.add(textArea);
@@ -135,10 +155,7 @@ public class CanvasDisplay extends JComponent implements TicTacToeListener{
             }
           }
 
-          private void captureVertexLabel(int x, int y){ //for changing vertex labels
-          }
 
-/////////////////// Edges
         public void captureEdge(int x, int y){
 
           VertexPosition.put(VerPoints, new Point(x,y));
@@ -156,6 +173,7 @@ public void paintComponent(Graphics g){
 
     drawVertex(g);
     drawEdge(g);
+    //drawSelectedVertex(g);
 }
 
 
@@ -176,34 +194,3 @@ public JLabel posUpdate(){
 		repaint();
 	}
 }
-
-
-
-
-/**
-
-
-    private void setLineWidth(Graphics g){
-        ((Graphics2D) g).setStroke(new BasicStroke(LINE_WIDTH));
-    }
-
-    private void drawLines(Graphics g){
-        g.drawLine(0, WIDTH, WIDTH*3, WIDTH);
-        g.drawLine(WIDTH, 0, WIDTH, WIDTH*3);
-        g.drawLine(0, WIDTH*2, WIDTH*3, WIDTH*2);
-        g.drawLine(WIDTH*2, 0, WIDTH*2, WIDTH*3);
-    }
-
-    private void drawX(Graphics g, int i, int j){
-        g.drawLine(i*WIDTH+GAP, j*WIDTH+GAP,
-                   i*WIDTH+WIDTH-GAP, j*WIDTH+WIDTH-GAP);
-        g.drawLine(i*WIDTH+WIDTH-GAP, j*WIDTH+GAP,
-                   i*WIDTH+GAP, j*WIDTH+WIDTH-GAP);
-    }
-
-    private void drawO(Graphics g, int i, int j){
-        g.drawOval(i*WIDTH + GAP, j*WIDTH + GAP, WIDTH-2*GAP, WIDTH-2*GAP);
-    }
-
-
-**/
