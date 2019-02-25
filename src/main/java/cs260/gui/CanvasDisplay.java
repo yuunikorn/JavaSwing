@@ -22,20 +22,24 @@ import cs260.game_model.TicTacToeListener;
 import cs260.game_model.IllegalMoveException;
 
 public class CanvasDisplay extends JComponent implements TicTacToeListener{
-  private static int WIDTH = 300;
+  private TicTacToeGame game;
+  private CanvasDisplayControl mouseController;
+  private static int WIDTH = 200;
   private static int GAP = 20;
   private static int LINE_WIDTH = 5;
 
 
   public CanvasDisplay(TicTacToeGame game){
-      //this.game = game;
-      //mouseController = new CanvasDisplayControl(this);
-      setBackground(Color.WHITE);
-      setSize(new Dimension(WIDTH,WIDTH));
-  		setPreferredSize(new Dimension(WIDTH,WIDTH));
+      this.game = game;
+      mouseController = new CanvasDisplayControl(game, this);
 
+      //addMouseMotionListener(new CanvasDisplayControl());
+      //addMouseListener(new CanvasDisplayControl());
+
+      this.setBackground(Color.WHITE);
+      this.setSize(new Dimension(WIDTH,WIDTH));
+  		this.setPreferredSize(new Dimension(WIDTH,WIDTH));
   }
-
 
     public void paintComponent(Graphics g){
         super.paintComponent(g);

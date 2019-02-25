@@ -1,7 +1,6 @@
 package cs260.gui;
 
 import java.awt.event.MouseListener;
-import java.awt.event.MouseAdapter;
 import java.awt.event.MouseMotionListener;
 import java.awt.event.MouseEvent;
 
@@ -10,7 +9,7 @@ import javax.swing.JOptionPane;
 import cs260.game_model.TicTacToeGame;
 import cs260.game_model.IllegalMoveException;
 
-public class CanvasDisplayControl implements MouseListener { //, MouseAdapter, MouseMotionListener{
+public class CanvasDisplayControl implements MouseListener, MouseMotionListener{
     private TicTacToeGame game;
     private CanvasDisplay gameDisplay;
 
@@ -18,33 +17,47 @@ public class CanvasDisplayControl implements MouseListener { //, MouseAdapter, M
     {
         this.game = game;
         this.gameDisplay = gameDisplay;
-
         gameDisplay.addMouseListener(this);
+        gameDisplay.addMouseMotionListener(this);
+        //gameDisplay.addMouseListener(this);
     }
 
-    public void mouseClicked(MouseEvent e)
-    {
+    @Override
+    public void mouseClicked(MouseEvent e){
       System.out.print("?!??!?!");
+    }
+
+
+    @Override
+    public void mouseEntered(MouseEvent e){
 
     }
 
-    public void mouseEntered(MouseEvent e)
-    {
-
-    }
-    public void mouseExited(MouseEvent e)
-    {
-
-    }
-    public void mousePressed(MouseEvent e)
-    {
+    @Override
+    public void mouseExited(MouseEvent e){
 
     }
 
-    public void mouseReleased(MouseEvent e)
-    {
+    @Override
+    public void mousePressed(MouseEvent e){
 
     }
+
+    @Override
+    public void mouseReleased(MouseEvent e){
+
+    }
+
+    @Override
+    public void mouseMoved(MouseEvent e) {
+
+      }
+
+    @Override
+    public void mouseDragged(MouseEvent e) {
+      System.out.print("\nmouseDRAGGED event is called: CANVACDISPLAYCONTROL\n");
+
+      }
 
 }
 

@@ -13,7 +13,6 @@ public class MainDisplayControl implements MouseListener, MouseMotionListener{
 
     private TicTacToeGame game;
     private MainDisplay gameDisplay;
-    //private JLabel output;
 
 
     public MainDisplayControl(TicTacToeGame game, MainDisplay gameDisplay){

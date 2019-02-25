@@ -8,7 +8,7 @@ import cs260.gui.MainDisplay;
 
 //import cs260.turn_gui.TurnIndicator;
 
-import cs260.javapaint.BasicPaint;
+//import cs260.javapaint.BasicPaint;
 
 //import cs260.gui.CanvasDisplay;
 
@@ -23,8 +23,8 @@ public class TicTacToeApp
         main.start();
 
         //calls a painter object
-        BasicPaint painter = new BasicPaint();
-        painter.main(args);
+        //BasicPaint painter = new BasicPaint();
+        //painter.main(args);
 
     }
 
