@@ -1,4 +1,4 @@
-package cs260.gui;
+/**package cs260.gui;
 
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
@@ -38,7 +38,7 @@ public class MainDisplayControl implements MouseListener, MouseMotionListener{
         } catch (IllegalMoveException ex) {
             // warn user
         }
-        **/
+        //    ** /
 
         System.out.print("\nmouseClicked event is called: MainDisplayControl: ");
         System.out.print(x + "," + y);
@@ -86,3 +86,4 @@ public class MainDisplayControl implements MouseListener, MouseMotionListener{
 
     }
 }
+**/

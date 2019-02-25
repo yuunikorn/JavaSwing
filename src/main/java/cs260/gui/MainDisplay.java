@@ -25,7 +25,7 @@ import cs260.gui.CanvasDisplay;
 
 public class MainDisplay extends JComponent implements TicTacToeListener {
 	private TicTacToeGame game;
-	private MainDisplayControl mouseController;
+	private CanvasDisplayControl mouseController;
 	private OpenSaveOptions CanOpener;
 	private JLabel output = new JLabel("XYcoordinates");
 	private CanvasDisplay canvas;
@@ -37,7 +37,7 @@ public class MainDisplay extends JComponent implements TicTacToeListener {
 
 	public MainDisplay(TicTacToeGame game){
 		this.game = game;
-		mouseController = new MainDisplayControl(game, this);
+		//mouseController = new CanvasDisplayControl(game, this);
 
 		setSize(new Dimension(WIDTH*4, WIDTH*3));
 		setPreferredSize(new Dimension(WIDTH*4, WIDTH*3));
@@ -45,28 +45,13 @@ public class MainDisplay extends JComponent implements TicTacToeListener {
 
 		this.add(menubar(), BorderLayout.NORTH);
 		this.add(sidebar(), BorderLayout.WEST);
-		this.add(output,BorderLayout.PAGE_END);
 
 		CanvasDisplay canvas = new CanvasDisplay(game);
 		this.add(canvas, BorderLayout.CENTER);
+		this.add(canvas.posUpdate(),BorderLayout.PAGE_END);
 
 	}
 
-/**
-	private JComponent MainCanvas(TicTacToeGame game){
-		MainDisplay gameDisplay = new MainDisplay(game);
-		JComponent panel = canvas.CanvasDisplay(game);
-
-		JPanel panel = new JPanel();
-		panel.setBackground(Color.WHITE);
-		//panel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-		panel.setSize(new Dimension(300,300));
-		panel.setPreferredSize(new Dimension(300,300));
-
-
-		return panel;
-	}
-**/
 
 
 	private JPanel sidebar(){
@@ -159,13 +144,7 @@ public class MainDisplay extends JComponent implements TicTacToeListener {
 		return menubar;
 }
 
-public void xyCoordListener(int x, int y){
 
-	String text = "";
-	text += "X,Y: " + x + "," + y;
-	output.setText(text);
-	//return output;
-}
 
 
 public void update(){

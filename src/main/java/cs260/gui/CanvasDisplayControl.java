@@ -24,7 +24,12 @@ public class CanvasDisplayControl implements MouseListener, MouseMotionListener{
 
     @Override
     public void mouseClicked(MouseEvent e){
-      System.out.print("?!??!?!");
+      int x = e.getX();
+      int y = e.getY();
+
+      gameDisplay.captureVertex(x,y);
+
+      System.out.print("\nCANVASCLICK: " + x + "," + y + "\n");
     }
 
 
@@ -50,7 +55,10 @@ public class CanvasDisplayControl implements MouseListener, MouseMotionListener{
 
     @Override
     public void mouseMoved(MouseEvent e) {
+      int x = e.getX();
+      int y = e.getY();
 
+      gameDisplay.xyCoordListener(x,y);
       }
 
     @Override
