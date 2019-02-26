@@ -77,17 +77,18 @@ public class CanvasDisplayControl implements MouseListener, MouseMotionListener,
 //////////////////////key listener
     public void keyTyped(KeyEvent e) {
 
-//      while (e.getKeyChar() != "\n"){
-//        char character = e.getKeyChar();
-//        altered += character;
-//      }
-
-      //gameDisplay.keystrokeListener();
         //displayInfo(e, "KEY TYPED: ");
     }
 
     /** Handle the key-pressed event from the text field. */
     public void keyPressed(KeyEvent e) {
+      altered = "huj";
+      //while (){
+      altered += e.getKeyChar();
+      //  altered += character;
+      //}
+
+      gameDisplay.keystrokeListener(altered);
         //displayInfo(e, "KEY PRESSED: ");
     }
 

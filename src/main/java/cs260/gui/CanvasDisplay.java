@@ -29,7 +29,6 @@ public class CanvasDisplay extends JComponent implements TicTacToeListener{
   private CanvasDisplayControl mouseController;
   private HashMap<String,ArrayList<String>> Graph;
   private HashMap<String, Point> VertexPosition;
-  private Object selectedpoint;
 
   private static int WIDTH = 200; //from TicTacToe
   private static int GAP = 20;
@@ -114,9 +113,10 @@ public class CanvasDisplay extends JComponent implements TicTacToeListener{
         }
 
         public void keystrokeListener(String word){
-        	altered = word;
+        	//altered = word;
           System.out.println(word);
-          System.out.println(altered);
+          //System.out.println(altered);
+          this.update();
         }
 
         public void captureVertex(int x, int y){

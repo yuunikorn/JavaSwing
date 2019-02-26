@@ -68,13 +68,13 @@ public class MainDisplay extends JComponent implements TicTacToeListener {
 
 		//panel.add(new JSeparator(JSeparator.VERTICAL));
 		panel.add(new JSeparator(JSeparator.VERTICAL));
+		panel.add(new JButton("Save"));
 		panel.add(new JButton("Vertex"));
 		panel.add(new JButton("Edge"));
 		panel.add(new JButton("Rename"));
 		panel.add(new JButton("insert"));
 		panel.add(new JButton("something"));
 		panel.add(new JButton("here"));
-		panel.add(new JButton("?!?!"));
 		panel.add(new JButton("Clear All"));
 
 		//canvasImage = new BufferedImage(50,30,BufferedImage.TYPE_INT_ARGB);
