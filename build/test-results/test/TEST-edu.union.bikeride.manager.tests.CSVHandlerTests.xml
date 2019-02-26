@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="edu.union.bikeride.manager.tests.CSVHandlerTests" tests="6" skipped="0" failures="0" errors="0" timestamp="2019-02-26T02:19:59" hostname="Yus-MacBook-Pro.local" time="0.015">
+  <properties/>
+  <testcase name="testImportRouteSegment" classname="edu.union.bikeride.manager.tests.CSVHandlerTests" time="0.01"/>
+  <testcase name="testGetLabel" classname="edu.union.bikeride.manager.tests.CSVHandlerTests" time="0.001"/>
+  <testcase name="testGetStart" classname="edu.union.bikeride.manager.tests.CSVHandlerTests" time="0.0"/>
+  <testcase name="testGetEnd" classname="edu.union.bikeride.manager.tests.CSVHandlerTests" time="0.001"/>
+  <testcase name="testGetDistance" classname="edu.union.bikeride.manager.tests.CSVHandlerTests" time="0.001"/>
+  <testcase name="testGetDirections" classname="edu.union.bikeride.manager.tests.CSVHandlerTests" time="0.001"/>
+  <system-out><![CDATA[The label is: Currybush+Skyline-MariavilleStore-DuanesburgChurches
+edu.union.bikeride.manager.RouteSegment@15b2f90c
+false
+false
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
