@@ -1,5 +1,4 @@
 apply plugin: 'java'
-apply plugin: 'base'
 
 sourceCompatibility = 1.8
 
@@ -7,21 +6,21 @@ repositories {
     mavenCentral()
 }
 
-
 apply plugin: 'application'
-mainClassName = 'edu.union.gui.RouteApp'
+mainClassName = 'cs260.RouteApp'
 
 run {
     standardInput = System.in
 }
 
-
-dependencies {
-    testCompile group: 'junit', name: 'junit', version: '4.+'
-    compile 'com.opencsv:opencsv:4.5'
-
+if (hasProperty("deprecation")) {
+   tasks.withType(Compile) {
+   	options.compilerArgs << "-Xlint:deprecation"		 
+   }
 }
 
-test {
-     include '**/*Suite.class'
+if (hasProperty("unchecked")) {
+   tasks.withType(Compile) {
+   	options.compilerArgs << "-Xlint:unchecked"		 
+   }
 }
