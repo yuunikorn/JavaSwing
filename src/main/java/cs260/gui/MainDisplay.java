@@ -11,16 +11,19 @@ import javax.swing.JComponent;
 import javax.swing.JOptionPane;
 
 import java.io.*;
+import java.util.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.awt.image.BufferedImage;
 import javax.swing.*;
 import javax.swing.SwingUtilities;
 
-import cs260.routemodel.RouteManager;
-import cs260.routemodel.RouteListener;
-import cs260.gui_methods.OpenSaveOptions;
+///////////NOT MINE////////////////////
+import cs260.routemodel.*;
+import cs260.gui.gui_methods.*;
+import cs260.graph.Graph;
 import cs260.gui.CanvasDisplay;
+import cs260.routemodel.RouteListener;
 
 
 public class MainDisplay extends JComponent implements RouteListener {
@@ -50,7 +53,10 @@ public class MainDisplay extends JComponent implements RouteListener {
 		this.add(canvas, BorderLayout.CENTER);
 		this.add(canvas.posUpdate(),BorderLayout.PAGE_END);
 
+
+
 	}
+
 
 
 
@@ -144,6 +150,22 @@ public class MainDisplay extends JComponent implements RouteListener {
 		return menubar;
 }
 
+
+///////////NOT MINE///////////////////
+/**
+public void update(Observable o, Object arg){
+	ArrayList<RouteSegment> all_route_segments = (ArrayList<RouteSegment>)((RouteManager) o).getAllRouteSegments();
+	ArrayList<RouteSegment> potential_routes = (ArrayList<RouteSegment>)((RouteManager) o).getPotentialRoutes();
+	Graph<String> route_manager_graph = ((RouteManager) o).getGraph();
+	HashMap<String, Point> VertexPosition = GraphtoHash.convertGraphVertexPosHash(route_manager_graph);
+	HashMap<String, ArrayList<String>> graph = GraphtoHash.convertGraphVertexEdgeHash(route_manager_graph);
+
+	canvas.setVertexPosition(VertexPosition);
+	canvas.setGraph(graph);
+	canvas.setSegmentsToDisplay(all_route_segments);
+	canvas.update();
+	this.update();
+}**/
 
 
 

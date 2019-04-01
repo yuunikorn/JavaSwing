@@ -1,4 +1,4 @@
-package cs260.gui_methods;
+package cs260.gui.gui_methods;
 
 import java.awt.Dimension;
 import java.awt.Font;
@@ -10,6 +10,7 @@ import java.awt.BasicStroke;
 import javax.swing.JComponent;
 import javax.swing.JOptionPane;
 
+import java.util.*;
 import java.io.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -17,12 +18,20 @@ import javax.swing.*;
 import javax.swing.SwingUtilities;
 import javax.swing.filechooser.*;
 
+import cs260.routemodel.handler.FileHandler;
+import cs260.routemodel.handler.CSVHandler;
+import cs260.routemodel.RouteManager;
+import cs260.routemodel.RouteSegment;
 
 /**
 * @author ouy
 */
 public class OpenSaveOptions{
+
 	public static JFileChooser j = new JFileChooser();
+	private static CSVHandler file_handler;
+	private static RouteManager routemanager;
+
 
 	public static void OpenOption(AbstractButton b1){
 
@@ -32,9 +41,9 @@ public class OpenSaveOptions{
 			public void actionPerformed(ActionEvent e) {
 				j.setApproveButtonText("Open");
 				// Set the mnemonic
-				j.setApproveButtonMnemonic('a');
+				j.setApproveButtonMnemonic('O');
 				// Set the tool tip
-				j.setApproveButtonToolTipText("New Approve Tool Tip");
+				j.setApproveButtonToolTipText("Open new file");
 
 				int r = j.showOpenDialog(null);			//for open box
 
@@ -43,10 +52,15 @@ public class OpenSaveOptions{
 
 					File file = j.getSelectedFile();
 					String fullPath = file.getAbsolutePath();
-
-					//something.getfilepathname(fullPath)
-
 					System.out.println(fullPath);
+
+					try {
+						file_handler.importRouteSegment(fullPath);
+					} catch (IOException ex) {
+						System.out.println("The file passed is invalid. Please try again.");
+					}
+
+
 				}
 			}
 		});
@@ -74,6 +88,13 @@ public class OpenSaveOptions{
 					File file = j.getSelectedFile();
 					String fullPath = file.getAbsolutePath();
 					System.out.println(fullPath);
+
+					try {
+						file_handler.exportRoute(routemanager.getSelectedRoute());
+					} catch (IOException ex) {
+						System.out.println("The file passed is invalid. Please try again.");
+					}
+
 
 				}
 			}

@@ -21,6 +21,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 import cs260.routemodel.RouteManager;
+import cs260.routemodel.RouteSegment;
 import cs260.routemodel.RouteListener;
 import cs260.routemodel.IllegalMoveException;
 
@@ -29,6 +30,7 @@ public class CanvasDisplay extends JComponent implements RouteListener{
   private CanvasDisplayControl mouseController;
   private HashMap<String,ArrayList<String>> Graph;
   private HashMap<String, Point> VertexPosition;
+  private ArrayList<RouteSegment> segments_to_display;
 
   private static int WIDTH = 200; //from TicTacToe
   private static int GAP = 20;
@@ -50,6 +52,7 @@ public class CanvasDisplay extends JComponent implements RouteListener{
       this.setBackground(Color.WHITE);
       this.setSize(new Dimension(WIDTH,WIDTH));
   		this.setPreferredSize(new Dimension(WIDTH,WIDTH));
+      selectedArray = new ArrayList<String>();
 
       //position of vertexes
       VertexPosition = new HashMap<String, Point>(); //<"VertexName", new Point(x,y)> location of vertex
@@ -58,21 +61,21 @@ public class CanvasDisplay extends JComponent implements RouteListener{
       Graph = new HashMap<String,ArrayList<String>>(); //<Vertex, ArrayList of edges>
 
       //initialization Graphics test here or add hashmap Graph
+      segments_to_display = new ArrayList<RouteSegment>();
+
+            //VertexPosition.put("START", new Point(150,250));
+            //VertexPosition.put("END", new Point(600,100));
+            //VertexPosition.put("MID", new Point(75,10));
+            //VertexPosition.put("SEMI", new Point(120,450));
+
+            //ArrayList<String> edge = new ArrayList<String>(); //edges associated with specific vertex
+            //edge.add("END");
+            //edge.add("MID");
+            //edge.add("SEMI");
+            //Graph.put("START", edge);
+            //Graph.put("END", null);
 
 
-            VertexPosition.put("START", new Point(150,250));
-            VertexPosition.put("END", new Point(600,100));
-            VertexPosition.put("MID", new Point(75,10));
-            VertexPosition.put("SEMI", new Point(120,450));
-
-            ArrayList<String> edge = new ArrayList<String>(); //edges associated with specific vertex
-            edge.add("END");
-            edge.add("MID");
-            edge.add("SEMI");
-            Graph.put("START", edge);
-            Graph.put("END", null);
-
-            selectedArray = new ArrayList<String>();
   }
 
 
@@ -174,7 +177,20 @@ public class CanvasDisplay extends JComponent implements RouteListener{
                 int midy = (start.y + end.y) / 2;
 
 
-                JTextArea textArea = new JTextArea("Route Name");
+                String edge_label = "";
+                for(RouteSegment segment : segments_to_display){
+                    if(segment.getStartPoint().equals(vertex) && segment.getEndPoint().equals(edge)){
+                        if(edge_label.equals("")){
+                            edge_label = segment.getLabel();
+                        } else {
+                            edge_label += ", " + segment.getLabel();
+                        }
+                    }
+                }
+                System.out.println(edge_label);
+
+
+                JTextArea textArea = new JTextArea(edge_label);
                 this.add(textArea);
                 textArea.setBounds(midx, midy, 80, 20);
                 }

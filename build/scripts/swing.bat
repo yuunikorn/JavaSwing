@@ -63,7 +63,7 @@ set CMD_LINE_ARGS=%*
 :execute
 @rem Setup the command line
 
-set CLASSPATH=%APP_HOME%\lib\swing.jar
+set CLASSPATH=%APP_HOME%\lib\swing.jar;%APP_HOME%\lib\opencsv-4.5.jar;%APP_HOME%\lib\commons-text-1.3.jar;%APP_HOME%\lib\commons-lang3-3.8.1.jar;%APP_HOME%\lib\commons-beanutils-1.9.3.jar;%APP_HOME%\lib\commons-collections4-4.2.jar;%APP_HOME%\lib\commons-logging-1.2.jar;%APP_HOME%\lib\commons-collections-3.2.2.jar
 
 @rem Execute swing
 "%JAVA_EXE%" %DEFAULT_JVM_OPTS% %JAVA_OPTS% %SWING_OPTS%  -classpath "%CLASSPATH%" cs260.RouteApp %CMD_LINE_ARGS%

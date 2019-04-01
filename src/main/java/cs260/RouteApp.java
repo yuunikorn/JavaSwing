@@ -32,10 +32,10 @@ public class RouteApp
       System.out.print("\n Start() is called: RouteApp\n");
 
         //Step 3: create jframe called main frame
-        JFrame mainFrame = new JFrame("Tic Tac Toe");
+        JFrame mainFrame = new JFrame("Route");
 
         //Step 4: create TTTgame called game with player x
-        RouteManager game = new RouteManager('X');
+        RouteManager game = new RouteManager();
 
 
         //Step 5: create gamedisplay for game
